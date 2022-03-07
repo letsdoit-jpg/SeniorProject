@@ -34,4 +34,43 @@ namespace UserAcc
         public string Password { get => password; set => password = value; }
         public string Passcode { get => passcode; set => passcode = value; }
     }
+
+    public class ROLE
+    {
+        private string roleName;
+        private string roleDetail;
+        private bool isAdmin;
+        private bool isStudent;
+
+        public ROLE(string rn, string rd, bool a, bool s)
+        {
+            this.RoleName = rn;
+            this.RoleDetail = rd;
+            this.isAdmin = a;
+            this.isStudent = s;
+
+            PERMISSION = new HashSet<PERMISSION>();
+            UserAccount = new HashSet<UserAccount>();
+        }
+        public string RoleName { get => roleName; set => roleName = value; }
+        public string RoleDetail { get => roleDetail; set => roleDetail = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsStudent { get => isStudent; set => isStudent = value; }
+        public virtual ICollection<PERMISSION> PERMISSION { get; set; }
+        public virtual ICollection<UserAccount> UserAccount { get; set; }
+    }
+    public class PERMISSION
+    {
+        private string permissionDetails;
+
+        public PERMISSION(string pd)
+        {
+            this.PermissionDetails = pd;
+            ROLE = new HashSet<ROLE>();
+        }
+
+        public string PermissionDetails { get => permissionDetails; set => permissionDetails = value; }
+
+        public virtual ICollection<ROLE> ROLE { get; set; }
+    }
 }

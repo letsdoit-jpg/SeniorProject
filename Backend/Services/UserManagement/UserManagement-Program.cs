@@ -42,7 +42,7 @@ namespace UserManagement
         }
 
             // Checks if user exists, and if they do deletes them
-            public static bool DeleteUser(string username)
+        public static bool DeleteUser(string username)
         {
             bool userExist = Validate.UserExist(username);
             if (userExist == true)
@@ -143,7 +143,6 @@ namespace UserManagement
     public class Authorize
     {
         static bool authorize(string username)
-        
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Environment.GetEnvironmentVariable("MARVELCONNECTIONSTRING");
